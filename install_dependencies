@@ -1,0 +1,15 @@
+#!/bin/bash
+
+sudo yum install java-1.8.0-openjdk -y
+sudo yum install java-1.8.0-openjdk-deval -y 
+#sudo update-alternatives --config java  
+sudo alternatives --set java /usr/lib/jvm/jre-1.8.0-openjdk.x86_64/bin/java
+cd /opt
+sudo wget http://www.eu.apache.org/dist/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz
+sudo tar -xvzf ./apache-maven-3.6.3-bin.tar.gz
+cd  /etc/profile.d/
+sudo touch maven.sh
+sudo chmod 777 maven.sh 
+echo -e "export M2_HOME=/opt/apache-maven-3.6.3\nexport PATH=${M2_HOME}/bin:${PATH}" > maven.sh 
+source /etc/profile.d/maven.sh 
+
